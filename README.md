@@ -12,4 +12,4 @@ Esta aplicación permite registrar el estado de cada diente según el sistema IC
 ## Requisitos
 
 - R >= 4.0
-- Paquetes: shiny, rhandsontable.
+- Paquetes: shiny, shinyalert, rhandsontable.
