@@ -5,7 +5,7 @@ Esta aplicación permite registrar el estado de cada diente según el sistema IC
 ## Cómo usar
 
 1. Clona el repositorio:
-   git clone https://github.com/tuusuario/odontograma-icdas.git
+   git clone https://github.com/pablofbaez/Odontograma-SSFB.git
 
 2. Si trabajarás localmente, abre `odontograma_icdas_II_long_form.R` en RStudio y haz clic en "Run App".
 
