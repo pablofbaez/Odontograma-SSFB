@@ -11,6 +11,10 @@ if (!requireNamespace("rhandsontable", quietly = TRUE)) {
 library(shiny)
 library(rhandsontable)
 
+# Specify the application port
+options(shiny.host = "0.0.0.0")
+options(shiny.port = 8180)
+
 # 1) Listas de dientes FDI
 todos_dientes <- c(
   permanentes <- as.character(c(11:18,21:28,31:38,41:48)),
