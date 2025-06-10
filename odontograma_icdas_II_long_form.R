@@ -41,7 +41,7 @@ opts_act   <- c("NA","Activa","Detenida")
 opts_rad   <- c("NA","No cavitada","Cavitada")
 
 # 3) Crear esqueleto de un paciente
-tooth_columns <- c("M","O","D","V","P","Raiz")
+tooth_columns <- c("M","O","D","V","P","R")
 make_base_df <- function(fecha, odontologo, curso, ID, dientes_presentes){
   df <- expand.grid(
     tooth = todos_dientes,
