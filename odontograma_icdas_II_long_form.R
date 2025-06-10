@@ -122,6 +122,7 @@ server <- function(input, output, session) {
   output$hot_table <- renderRHandsontable({
     df <- rv()
     req(df)
+    rownames(df) <- df$tooth # Número de diente como nombre de cada fila
     rhandsontable(df, stretchH = "all") %>%
       hot_col("Presente", type = "checkbox") %>%
       hot_col("EstadoGeneral", type = "dropdown", source = opts_estado) %>%
