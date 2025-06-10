@@ -2,7 +2,7 @@ FROM rocker/shiny
 
 RUN mkdir /home/shiny-app
 
-RUN R -e "install.packages(c('rhandsontable'))"
+RUN R -e "install.packages(c('rhandsontable', 'shinyalert'))"
 
 COPY odontograma_icdas_II_long_form.R /home/shiny-app/app.R
 
