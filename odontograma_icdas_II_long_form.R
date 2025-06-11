@@ -61,7 +61,7 @@ ui <- fluidPage(
   tags$head(tags$style(HTML("
     #top-panel {
       position: fixed; top: 0; left: 0; right: 0;
-      background: #f8f9fa; padding: 7px; z-index: 1000;
+      background: #f8f9fa; padding: 10px; z-index: 1000;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     #main-content { margin-top: 140px; }
