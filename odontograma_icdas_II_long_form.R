@@ -107,7 +107,7 @@ server <- function(input, output, session) {
     # Mostrar sólo las columnas editables:
     df_disp <- df_full[, setdiff(names(df_full), hidden_cols)]
     rownames(df_disp) <- df_full$tooth
-    rhandsontable(df_disp, stretchH = "all", height = 700) %>%
+    rhandsontable(df_disp, stretchH = "all", height = 450) %>%
       hot_col("Presente",      type = "checkbox") %>%
       hot_col("EstadoGeneral", type = "dropdown", source = opts_estado) %>%
       { for(s in tooth_columns) {
