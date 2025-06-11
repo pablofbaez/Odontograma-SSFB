@@ -11,6 +11,7 @@ for (pkg in c("shiny","rhandsontable","shinyalert","bslib")) {
 options(shiny.host = "0.0.0.0")
 options(shiny.port = 8180)
 
+# Datos constantes
 todos_dientes <- c(
   permanentes <- as.character(c(11:18,21:28,31:38,41:48)),
   temporales  <- as.character(c(51:55,61:65,71:75,81:85))
@@ -71,16 +72,13 @@ ui <- fluidPage(
       fluidRow(
         column(3, dateInput("fecha", "Fecha", value = Sys.Date())),
         column(3, textInput("odontologo", "Odontólogo", "")),
-        column(2, selectInput("curso", "Curso", choices = 1:3, selected = 1)),
+        column(1, selectInput("curso", "Curso", choices = 1:3, selected = 1)),
         column(2, numericInput("ID", "ID Estudiante", value = 1, min = 1)),
-        column(2,
-               actionButton("gen_table", "Generar tabla", icon = icon("table")),
-               actionButton("reset_all","Limpiar", icon = icon("eraser"))
-        )
+        column(1, actionButton("gen_table", "", icon = icon("table"))),
+        column(1, downloadButton("download", "")),
+        column(1, actionButton("reset_all","", icon = icon("eraser")))
+        
       ),
-      fluidRow(
-        column(2, downloadButton("download", "Descargar CSV"))
-      )
   ),
   
   # contenido principal con scroll interno (tabla fija encabezado)
@@ -109,7 +107,7 @@ server <- function(input, output, session) {
     # Mostrar sólo las columnas editables:
     df_disp <- df_full[, setdiff(names(df_full), hidden_cols)]
     rownames(df_disp) <- df_full$tooth
-    rhandsontable(df_disp, stretchH = "all", height = 880) %>%
+    rhandsontable(df_disp, stretchH = "all", height = 700) %>%
       hot_col("Presente",      type = "checkbox") %>%
       hot_col("EstadoGeneral", type = "dropdown", source = opts_estado) %>%
       { for(s in tooth_columns) {
