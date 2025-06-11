@@ -64,7 +64,7 @@ ui <- fluidPage(
       background: #f8f9fa; padding: 10px; z-index: 1000;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    #main-content { margin-top: 140px; }
+    #main-content { margin-top: 110px; }
   "))),
   
   # panel superior fijo
