@@ -20,20 +20,13 @@ permanentes <- todos_dientes[1:length(permanentes)]
 temporales  <- todos_dientes[(length(permanentes)+1):length(todos_dientes)]
 
 opts_resta <-  c(
-  "R0","R1","R2","R3",
-  "R4","R5","R6","R7","R8"
+  "R0: Sin rest","R1: Sell mal","R2: Sell bien","R3: Obs color",
+  "R4: Amalg","R5: Corona ac","R6: Porcelana","R7: Perd/fract","R8: Temp"
 )
-# "R0: Sin rest","R1: Sell mal","R2: Sell bien","R3: Obs color",
-# "R4: Amalg","R5: Corona ac","R6: Porcelana","R7: Perd/fract","R8: Temp"
-
 opts_caries <- c(
-  "C0","C1","C2","C3",
-  "C4","C5","C6"
+  "C0: Sin car","C1: Camb vis I","C2: Camb vis II","C3: Rupt esm",
+  "C4: Sombra sub","C5: Cav detect","C6: Cav ext"
 )
-
-#"C0: Sin car","C1: Camb vis I","C2: Camb vis II","C3: Rupt esm",
-#  "C4: Sombra sub","C5: Cav detect","C6: Cav ext"
-
 opts_estado <- c(
   "NA","0: Sano","91: Impl car","96: No rev","97: Pérd car","98: Pérd no car","99: No erup"
 )
@@ -50,8 +43,8 @@ make_base_df <- function(fecha, odontologo, curso, ID) {
   df$Presente   <- df$tooth %in% temporales
   df$EstadoGeneral <- "NA"
   for(s in tooth_columns) {
-    df[[paste0("Rest_", s)]] <- "R0"
-    df[[paste0("Car_",  s)]] <- "C0"
+    df[[paste0("Rest_", s)]] <- "R0: Sin rest"
+    df[[paste0("Car_",  s)]] <- "C0: Sin car"
   }
   df$ActividadCaries <- "NA"
   df$CariesRadicular <- "NA"
@@ -71,7 +64,7 @@ ui <- fluidPage(
       background: #f8f9fa; padding: 10px; z-index: 1000;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    #main-content { margin-top: 110px; }
+    #main-content { margin-top: 140px; }
   "))),
   
   # panel superior fijo
@@ -98,7 +91,7 @@ server <- function(input, output, session) {
   rv <- reactiveVal(NULL)
   hidden_cols <- c("fecha","odontologo","curso","ID","tooth")
   
-  observeEvent(inputgen_table, {
+  observeEvent(input$gen_table, {
     req(input$odontologo, input$ID)
     base <- make_base_df(
       fecha      = as.character(input$fecha),
