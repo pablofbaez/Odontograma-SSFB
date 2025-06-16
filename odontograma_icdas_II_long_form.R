@@ -59,7 +59,7 @@ make_base_df <- function(fecha, odontologo, curso, ID) {
   df[, c("fecha","odontologo","curso","ID","tooth","Presente","EstadoGeneral",
          unlist(lapply(tooth_columns, function(s) paste0("Rest_",s))),
          unlist(lapply(tooth_columns, function(s) paste0("Car_",s))),
-        "ActividadCaries","CariesRadicular","Notas")]
+         "ActividadCaries","CariesRadicular","Notas")]
 }
 
 ui <- fluidPage(
@@ -98,7 +98,7 @@ server <- function(input, output, session) {
   rv <- reactiveVal(NULL)
   hidden_cols <- c("fecha","odontologo","curso","ID","tooth")
   
-  observeEvent(input$gen_table, {
+  observeEvent(inputgen_table, {
     req(input$odontologo, input$ID)
     base <- make_base_df(
       fecha      = as.character(input$fecha),
@@ -123,7 +123,7 @@ server <- function(input, output, session) {
         . 
       }; .
       } %>%
-      hot_col("ActividadCaries", type = "dropdown", source = opts_act)#  %>%
+      hot_col("ActividadCaries", type = "dropdown", source = opts_act) %>%
       hot_col("CariesRadicular", type = "dropdown", source = opts_rad)
   })
   
