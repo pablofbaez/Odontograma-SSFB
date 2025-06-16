@@ -38,7 +38,7 @@ opts_estado <- c(
   "NA","0: Sano","91: Impl car","96: No rev","97: Pérd car","98: Pérd no car","99: No erup"
 )
 opts_act   <- c("NA","Activa","Detenida")
-# opts_rad   <- c("NA","No cavitada","Cavitada")
+opts_rad   <- c("NA","No cavitada","Cavitada")
 tooth_columns <- c("M","O","D","V","P","R")
 
 make_base_df <- function(fecha, odontologo, curso, ID) {
@@ -54,12 +54,12 @@ make_base_df <- function(fecha, odontologo, curso, ID) {
     df[[paste0("Car_",  s)]] <- "C0"
   }
   df$ActividadCaries <- "NA"
-  # df$CariesRadicular <- "NA"
+  df$CariesRadicular <- "NA"
   df$Notas <- ""
   df[, c("fecha","odontologo","curso","ID","tooth","Presente","EstadoGeneral",
          unlist(lapply(tooth_columns, function(s) paste0("Rest_",s))),
-         unlist(lapply(tooth_columns, function(s) paste0("Car_",s))),"Notas")] #,
-        # "ActividadCaries","CariesRadicular","Notas")]
+         unlist(lapply(tooth_columns, function(s) paste0("Car_",s))),
+        "ActividadCaries","CariesRadicular","Notas")]
 }
 
 ui <- fluidPage(
@@ -124,7 +124,7 @@ server <- function(input, output, session) {
       }; .
       } %>%
       hot_col("ActividadCaries", type = "dropdown", source = opts_act)#  %>%
-      # hot_col("CariesRadicular", type = "dropdown", source = opts_rad)
+      hot_col("CariesRadicular", type = "dropdown", source = opts_rad)
   })
   
   observeEvent(input$hot_table, {
